@@ -47,15 +47,21 @@
   });
 </script>
 <style scoped lang="scss">
+  .ranking {
+    text-align: -webkit-center;
+  }
   table {
     color: cornsilk;
-    background-color: rgb(24, 45, 52);
+    background-color: rgb(25, 92, 75);
+    font-size: 25px;
     th {
+      background-color: rgb(67, 144, 70);
     }
     th,
     tr {
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       text-align: center;
+      border-color: cornsilk;
     }
   }
 </style>
