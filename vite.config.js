@@ -3,7 +3,5 @@ module.exports = {
   outDir: "docs",
   base: ".",
   assetsDir: "assets",
-  server: {
-    port: VUE_PORT
-  }
+  port: VUE_PORT
 }
