@@ -2,7 +2,7 @@
   "name": "tetris_vue",
   "version": "0.0.0",
   "scripts": {
-    "start": "npm run dev",
+    "start": "vite",
     "dev": "vite",
     "build": "vite build"
   },
