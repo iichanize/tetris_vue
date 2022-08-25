@@ -2,7 +2,7 @@
   "name": "tetris_vue",
   "version": "0.0.0",
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 5000",
     "dev": "vite",
     "build": "vite build"
   },
