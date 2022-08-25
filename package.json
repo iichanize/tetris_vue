@@ -1,7 +1,8 @@
 {
-  "name": "kingyo",
+  "name": "tetris_vue",
   "version": "0.0.0",
   "scripts": {
+    "start": "npm run dev",
     "dev": "vite",
     "build": "vite build"
   },
