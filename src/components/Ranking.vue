@@ -1,6 +1,6 @@
 <template>
   <h1>Score Ranking TOP 10</h1>
-  <div id="app">
+  <div id="ranking">
     <table>
       <thead>
         <tr>
@@ -30,13 +30,14 @@
       const getRanking = async () => {
         console.log("get request");
         const response = await axios
-          .get(`/api`)
+          .get(`https://tetris-vue-db.herokuapp.com/score/ranking`)
           .catch((error) => error.response);
-        console.log(response);
-        ranking = response.data;
+        ranking.value = response.data;
+        console.log(ranking);
       };
-      let ranking = [];
+      let ranking = ref([]);
       const headers = ["No.", "名前", "スコア"];
+
       getRanking();
       return {
         ranking,
@@ -45,3 +46,16 @@
     },
   });
 </script>
+<style scoped lang="scss">
+  table {
+    color: cornsilk;
+    background-color: rgb(24, 45, 52);
+    th {
+    }
+    th,
+    tr {
+      padding: 0.5rem;
+      text-align: center;
+    }
+  }
+</style>
