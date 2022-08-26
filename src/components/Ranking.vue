@@ -33,7 +33,6 @@
           .get(`https://tetris-vue-db.herokuapp.com/score/ranking`)
           .catch((error) => error.response);
         ranking.value = response.data;
-        console.log(ranking);
       };
       let ranking = ref([]);
       const headers = ["No.", "名前", "スコア"];
@@ -47,21 +46,24 @@
   });
 </script>
 <style scoped lang="scss">
-  .ranking {
+  #ranking {
     text-align: -webkit-center;
   }
   table {
     color: cornsilk;
     background-color: rgb(25, 92, 75);
     font-size: 25px;
+    border-collapse: collapse;
     th {
       background-color: rgb(67, 144, 70);
     }
     th,
+    td,
     tr {
       padding: 0.5rem 1rem;
       text-align: center;
       border-color: cornsilk;
+      border: solid 1.5px;
     }
   }
 </style>
