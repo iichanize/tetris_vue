@@ -28,7 +28,6 @@
     name: "Ranking",
     setup(_, ctx) {
       const getRanking = async () => {
-        console.log("get request");
         const response = await axios
           .get(`https://tetris-vue-db.herokuapp.com/score/ranking`)
           .catch((error) => error.response);

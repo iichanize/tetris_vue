@@ -1,14 +1,18 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Stage from './components/Stage.vue'
 import Ranking from './components/Ranking.vue'
-//
-// 他のコンポーネントは省略
+import Top from './components/TopPage.vue'
 
 export default createRouter({
     history: createWebHistory('/'),
     routes: [
+      {
+        path: '/',
+        name: 'TopPage',
+        component: Top
+      },
     {
-      path: '/',
+      path: '/tetris',
       name: 'game',
       component: Stage
     },
