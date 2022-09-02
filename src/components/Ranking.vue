@@ -17,6 +17,7 @@
         </tr>
       </tbody>
     </table>
+    <button id="return" @click="moveToTop">Topへ戻る</button>
   </div>
 </template>
 
@@ -24,9 +25,11 @@
   // import { axios } from "../infrastructure/AxiosInstance";
   import axios from "axios";
   import { defineComponent, ref } from "vue";
+  import { useRouter } from "vue-router";
   export default defineComponent({
     name: "Ranking",
     setup(_, ctx) {
+      const router = useRouter();
       const getRanking = async () => {
         const response = await axios
           .get(`https://tetris-vue-db.herokuapp.com/score/ranking`)
@@ -36,10 +39,15 @@
       let ranking = ref([]);
       const headers = ["No.", "名前", "スコア"];
 
+      const moveToTop = () => {
+        return router.replace({ name: "Top" });
+      };
+
       getRanking();
       return {
         ranking,
         headers,
+        moveToTop,
       };
     },
   });

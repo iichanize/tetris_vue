@@ -7,16 +7,14 @@
 </template>
 
 <script lang="ts">
-  // import { axios } from "../infrastructure/AxiosInstance";
-  import axios from "axios";
-  import { defineComponent, ref } from "vue";
+  import { defineComponent } from "vue";
   import { useRouter } from "vue-router";
   export default defineComponent({
     name: "Top",
     setup(_, ctx) {
       const router = useRouter();
       const moveToTetris = () => {
-        return router.replace({ name: "game" });
+        return router.replace({ name: "Tetris" });
       };
       const moveToRanking = () => {
         return router.replace({ name: "Ranking" });

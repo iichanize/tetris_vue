@@ -8,12 +8,12 @@ export default createRouter({
     routes: [
       {
         path: '/',
-        name: 'TopPage',
+        name: 'Top',
         component: Top
       },
     {
       path: '/tetris',
-      name: 'game',
+      name: 'Tetris',
       component: Stage
     },
     {
