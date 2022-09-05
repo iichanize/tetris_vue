@@ -5,12 +5,4 @@ export default class Score {
     this.name = userName;
     this.score = value;
   }
-
-  public getName() {
-    return this.name;
-  }
-
-  public getScore() {
-    return this.score;
-  }
 }

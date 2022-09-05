@@ -12,8 +12,8 @@
       <tbody>
         <tr v-for="(value, index) in ranking" v-bind:key="value.id">
           <th>{{ index + 1 }}</th>
-          <td>{{ value.getName }}</td>
-          <td>{{ value.getScore }}</td>
+          <td>{{ value.name }}</td>
+          <td>{{ value.score }}</td>
         </tr>
       </tbody>
     </table>
@@ -22,7 +22,6 @@
 </template>
 
 <script lang="ts">
-  import axios from "axios";
   import { defineComponent, Ref, ref } from "vue";
   import { useRouter } from "vue-router";
   import Score from "../domain/Score";
@@ -32,7 +31,7 @@
     setup(_, ctx) {
       const router = useRouter();
       const scoreTransfer = new ScoreTransfer();
-      let ranking = ref([]);
+      let ranking: Ref<Score[]> = ref([]);
       const headers = ["No.", "名前", "スコア"];
 
       const getRanking = async () => {
