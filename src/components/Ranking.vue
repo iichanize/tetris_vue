@@ -12,8 +12,8 @@
       <tbody>
         <tr v-for="(value, index) in ranking" v-bind:key="value.id">
           <th>{{ index + 1 }}</th>
-          <td>{{ value.getName() }}</td>
-          <td>{{ value.getScore() }}</td>
+          <td>{{ value.getName }}</td>
+          <td>{{ value.getScore }}</td>
         </tr>
       </tbody>
     </table>
