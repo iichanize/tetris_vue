@@ -55,8 +55,8 @@
       const resultScore = (result: number) => {
         score.value = result;
       };
-      const sendScore = async (name: string, score: number) => {
-        return await scoreTransfer.sendScore(name, score);
+      const sendScore = async (name: string, value: number) => {
+        return await scoreTransfer.sendScore(name, value);
       };
       const moveToRanking = () => {
         sendScore(userName.value, score.value);
