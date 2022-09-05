@@ -129,7 +129,7 @@
         if (stageState.map[1][4] === 1) {
           console.log("Game Over");
           ctx.emit("ending", true);
-          ctx.emit("score", totalScore);
+          ctx.emit("score", totalScore.value);
           return false;
         }
         // trueを返すとunmountまでの間繰り返し呼ばれる
