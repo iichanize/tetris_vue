@@ -22,23 +22,22 @@
 </template>
 
 <script lang="ts">
-  // import { axios } from "../infrastructure/AxiosInstance";
   import axios from "axios";
-  import { defineComponent, ref } from "vue";
+  import { defineComponent, Ref, ref } from "vue";
   import { useRouter } from "vue-router";
+  import Score from "../domain/Score";
+  import ScoreTransfer from "../infrastructure/transfer/ScoreTransfer";
   export default defineComponent({
     name: "Ranking",
     setup(_, ctx) {
       const router = useRouter();
-      const getRanking = async () => {
-        const response = await axios
-          .get(`https://tetris-vue-db.herokuapp.com/score/ranking`)
-          .catch((error) => error.response);
-        ranking.value = response.data;
-      };
+      const scoreTransfer = new ScoreTransfer();
       let ranking = ref([]);
       const headers = ["No.", "名前", "スコア"];
 
+      const getRanking = async () => {
+        ranking.value = await scoreTransfer.getRanking();
+      };
       const moveToTop = () => {
         return router.replace({ name: "Top" });
       };
@@ -55,6 +54,9 @@
 <style scoped lang="scss">
   #ranking {
     text-align: -webkit-center;
+  }
+  button {
+    cursor: pointer;
   }
   table {
     color: cornsilk;

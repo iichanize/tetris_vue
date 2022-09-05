@@ -48,4 +48,7 @@
       border: solid 1.5px;
     }
   }
+  button {
+    cursor: pointer;
+  }
 </style>

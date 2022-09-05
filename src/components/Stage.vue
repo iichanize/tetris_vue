@@ -1,5 +1,4 @@
 <template>
-  <!-- ステージ全体のコンポーネントです。背景・金魚・波紋を合成します -->
   <StageBg class="StageRoot">
     <PlayBoardLayer @ending="ending" @score="resultScore" />
   </StageBg>
@@ -19,7 +18,12 @@
       </div>
       <div class="body" v-if="flag">
         <span>スコア：{{ score }}</span>
-        <span>ユーザー名：―――</span>
+        <span
+          >ユーザー名：
+          <input v-model="userName" />
+        </span>
+      </div>
+      <div class="footer">
         <button id="sendButton" @click="moveToRanking">ランキングへ送信</button>
       </div>
     </div>
@@ -31,6 +35,7 @@
   import { useRouter } from "vue-router";
   import StageBg from "./StageBg.vue";
   import PlayBoardLayer from "./PlayBoardLayer.vue";
+  import ScoreTransfer from "../infrastructure/transfer/ScoreTransfer";
 
   export default defineComponent({
     name: "Stage",
@@ -41,19 +46,26 @@
     setup(_, ctx) {
       let flag = ref(false);
       let score = ref(0);
+      let userName = ref("");
       const router = useRouter();
+      const scoreTransfer = new ScoreTransfer();
       const ending = (end: boolean) => {
         if (end) flag.value = true;
       };
       const resultScore = (result: number) => {
         score.value = result;
       };
+      const sendScore = async (name: string, score: number) => {
+        return await scoreTransfer.sendScore(name, score);
+      };
       const moveToRanking = () => {
+        sendScore(userName.value, score.value);
         return router.replace({ name: "Ranking" });
       };
       return {
         flag,
         score,
+        userName,
         ending,
         resultScore,
         moveToRanking,
@@ -135,6 +147,9 @@
     background-color: rgba($color: #000000, $alpha: 0.7);
     margin: 0.75rem 0.5rem;
     z-index: 10;
+    button {
+      cursor: pointer;
+    }
     .message {
       display: flex;
       flex-direction: column;
@@ -147,8 +162,8 @@
         padding: 1rem;
         border-bottom: 1px solid #dee2e6;
         justify-content: space-between;
-        background-color: #008ea6;
-        color: #fff;
+        background-color: rgb(67, 144, 70);
+        color: cornsilk;
         span {
           line-height: 1.5;
           font-size: 15px;
@@ -165,7 +180,7 @@
           background-color: transparent;
           outline: 0;
           cursor: pointer;
-          color: #fff;
+          color: cornsilk;
         }
       }
       .subHeader {
@@ -185,7 +200,7 @@
           overflow: hidden;
           margin-left: 1rem;
           word-break: break-all;
-          color: #008ea6;
+          color: rgb(67, 144, 70);
         }
         .copyButton {
           width: 30px;
@@ -275,8 +290,8 @@
         margin-top: 10px;
         button {
           color: #fff;
-          background-color: #008ea6;
-          border-color: #008ea6;
+          background-color: rgb(67, 144, 70);
+          border-color: rgb(67, 144, 70);
           cursor: pointer;
           font-weight: 400;
           padding: 0.375rem 0.75rem;
