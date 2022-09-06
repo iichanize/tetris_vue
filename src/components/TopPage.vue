@@ -1,8 +1,16 @@
 <template>
   <div>
-    <button id="tetris" @click="moveToTetris">TETRIS</button>
-
-    <button id="ranking" @click="moveToRanking">RANKING</button>
+    <h1>Vue Practice</h1>
+    <div id="links">
+      <div id="tetris">
+        <span>Tetris</span>
+        <button @click="moveToTetris">PLAY</button>
+      </div>
+      <div id="ranking">
+        <span>Score Ranking</span>
+        <button @click="moveToRanking">SHOW</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,7 +56,39 @@
       border: solid 1.5px;
     }
   }
-  button {
-    cursor: pointer;
+  #links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: 25px;
+    color: cornsilk;
+    #tetris,
+    #ranking {
+      display: flex;
+      flex-direction: column;
+      button {
+        margin-top: 1rem;
+        width: 5rem;
+        cursor: pointer;
+        color: cornsilk;
+        background-color: rgb(67, 144, 70);
+        border-color: rgb(67, 144, 70);
+        cursor: pointer;
+        font-weight: 200;
+        padding: 0.375rem 0.75rem;
+        margin-left: 0.75rem;
+        font-size: 20px;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        border: 1px solid transparent;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        &:focus {
+          box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+          outline: 0;
+        }
+      }
+    }
   }
 </style>

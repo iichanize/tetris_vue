@@ -55,7 +55,26 @@
     text-align: -webkit-center;
   }
   button {
+    margin-top: 1rem;
+    width: 8rem;
     cursor: pointer;
+    color: cornsilk;
+    background-color: rgb(67, 144, 70);
+    border-color: rgb(67, 144, 70);
+    cursor: pointer;
+    font-weight: 200;
+    padding: 0.375rem 0.75rem;
+    margin-left: 0.75rem;
+    font-size: 20px;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+      outline: 0;
+    }
   }
   table {
     color: cornsilk;
