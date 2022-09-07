@@ -1,7 +1,5 @@
 <template>
-  <StageBg class="StageRoot">
-    <PlayBoardLayer @ending="ending" @score="resultScore" />
-  </StageBg>
+  <PlayBoardLayer @ending="ending" @score="resultScore" />
   <div class="arrow">
     <div id="first">↑</div>
     <div id="second">↑</div>
@@ -33,13 +31,12 @@
 <script lang="ts">
   import { defineComponent, ref } from "vue";
   import { useRouter } from "vue-router";
-  import StageBg from "./StageBg.vue";
   import PlayBoardLayer from "./PlayBoardLayer.vue";
   import ScoreTransfer from "../infrastructure/transfer/ScoreTransfer";
 
   export default defineComponent({
     name: "Stage",
-    components: { StageBg, PlayBoardLayer },
+    components: { PlayBoardLayer },
     props: {
       maxFish: { type: Number, default: 50 },
     },

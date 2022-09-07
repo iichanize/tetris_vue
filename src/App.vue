@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <Stage /> -->
     <router-view />
   </div>
 </template>
