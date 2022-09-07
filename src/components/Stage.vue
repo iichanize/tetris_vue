@@ -212,7 +212,6 @@
           cursor: pointer;
           font-weight: 400;
           padding: 0.375rem 0.75rem;
-          margin-left: 0.75rem;
           font-size: 15px;
           line-height: 1.5;
           border-radius: 0.25rem;

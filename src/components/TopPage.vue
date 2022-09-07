@@ -36,9 +36,6 @@
   });
 </script>
 <style scoped lang="scss">
-  #ranking {
-    text-align: -webkit-center;
-  }
   table {
     color: cornsilk;
     background-color: rgb(25, 92, 75);
@@ -65,6 +62,7 @@
     color: cornsilk;
     #tetris,
     #ranking {
+      align-items: center;
       display: flex;
       flex-direction: column;
       button {
@@ -77,7 +75,6 @@
         cursor: pointer;
         font-weight: 200;
         padding: 0.375rem 0.75rem;
-        margin-left: 0.75rem;
         font-size: 20px;
         line-height: 1.5;
         border-radius: 0.25rem;

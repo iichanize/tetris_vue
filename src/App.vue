@@ -38,7 +38,6 @@
   }
   button {
     display: inline-block;
-    margin-right: 5px;
     border: 2px solid rgb(80, 110, 124);
     color: rgb(80, 110, 124);
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
