@@ -3,5 +3,11 @@ module.exports = {
   outDir: "docs",
   base: ".",
   assetsDir: "assets",
-  port: VUE_PORT
+  port: VUE_PORT,
+  server: {
+    hmr: {
+      protocol: 'ws',
+      port: VUE_PORT
+    }
+  }
 }
