@@ -52,7 +52,7 @@
 </script>
 <style scoped lang="scss">
   #ranking {
-    text-align: -webkit-center;
+    text-align: center;
   }
   button {
     margin-top: 1rem;
@@ -77,6 +77,7 @@
     }
   }
   table {
+    margin: auto;
     color: cornsilk;
     background-color: rgb(25, 92, 75);
     font-size: 25px;
