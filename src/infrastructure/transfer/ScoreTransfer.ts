@@ -23,7 +23,7 @@ export default class ScoreTransfer {
 
   public async healthCheck(): Promise<boolean> {
     const response = await axios
-      .get("https://tetris-vue-db.herokuapp.com/score")
+      .get("https://tetris-vue-db.herokuapp.com/score/")
       .catch((error) => {
         return error.response;
       });
