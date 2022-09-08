@@ -53,6 +53,7 @@
   import { MinoModel } from "../core/MinoModel";
   import Constants from "../core/Constants";
   import { useKeyDown } from "../core/useKeyEvent";
+  import ScoreTransfer from "../infrastructure/transfer/ScoreTransfer";
 
   /**
    * ミノレイヤーの状態を管理する型
@@ -61,6 +62,7 @@
     minoList: MinoModel[];
     map: number[][];
     t: number;
+    healthCheckTime: number;
     name: string[];
     holdMino: MinoModel[];
     stock: MinoModel[];
@@ -80,6 +82,7 @@
     setup(props, ctx) {
       // state: レイヤーの状態
       // const { keyInput } = toRefs(props);
+      const scoreTransfer = new ScoreTransfer();
       let keyInput = ref("");
       const stageState = reactive<StageState>({
         minoList: [],
@@ -108,6 +111,7 @@
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ],
         t: 0,
+        healthCheckTime: 0,
         name: JSON.parse(JSON.stringify(Constants.NAMES)),
         holdMino: [],
         stock: [],
@@ -640,6 +644,10 @@
         if (stageState.map[1][4] === 1) {
           return false;
         }
+        if (stageState.healthCheckTime % 2000 === 0) {
+          scoreTransfer.healthCheck();
+          stageState.healthCheckTime = 0;
+        }
         if (
           stageState.t % (52 - Math.floor(1.7 * stageState.level)) === 0 ||
           forceRefresh
@@ -659,7 +667,6 @@
             canHold = true;
             ctx.emit("score", stageState.totalScore);
           } else {
-            // console.log("drop");
             drop(stageState.minoList);
             setGhost();
           }
@@ -669,6 +676,7 @@
           }
         }
         stageState.t++;
+        stageState.healthCheckTime++;
         return true;
       });
 

@@ -20,4 +20,13 @@ export default class ScoreTransfer {
       });
     return response.data;
   }
+
+  public async healthCheck(): Promise<boolean> {
+    const response = await axios
+      .get("https://tetris-vue-db.herokuapp.com/score")
+      .catch((error) => {
+        return error.response;
+      });
+    return true;
+  }
 }
