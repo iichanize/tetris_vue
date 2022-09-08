@@ -594,7 +594,10 @@
               }
             }
             record();
-            if (stageState.deleteLineNum % 10 === 0)
+            if (
+              stageState.deleteLineNum % 10 === 0 &&
+              Math.ceil(stageState.deleteLineNum / 10) < 30
+            )
               stageState.level = Math.ceil(stageState.deleteLineNum / 10) + 1;
           }
         }
@@ -638,7 +641,7 @@
           return false;
         }
         if (
-          stageState.t % (51 - Math.floor(1.5 * stageState.level)) === 0 ||
+          stageState.t % (52 - Math.floor(1.7 * stageState.level)) === 0 ||
           forceRefresh
         ) {
           if (
