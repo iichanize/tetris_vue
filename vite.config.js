@@ -3,7 +3,7 @@ module.exports = {
   outDir: "docs",
   base: ".",
   assetsDir: "assets",
-  port: VUE_PORT,
+  port: process.env.PORT,
   server: {
     https:true,
     hmr: {
