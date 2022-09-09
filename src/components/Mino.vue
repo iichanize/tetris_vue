@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, ref } from "vue";
+  import { defineComponent, onMounted, reactive, ref } from "vue";
   import { Block } from "./Block";
   import { Point } from "../core/Point";
   import { useAnimationFrame } from "../core/useAnimationFrame";
@@ -123,8 +123,9 @@
       });
       let forceRefresh = false;
       let canHold = true;
-      let baseX =
-        Math.floor(0.5 * window.innerWidth) - 5 * Constants.BLOCK_SIZE;
+      let baseX = ref(
+        Math.floor(0.5 * window.innerWidth) - 5 * Constants.BLOCK_SIZE
+      );
       let baseY = 2 * Constants.BLOCK_SIZE;
       const record = () => {
         stageState.map = JSON.parse(
@@ -132,7 +133,7 @@
         );
         stageState.minoList.map((mino) => {
           stageState.map[(mino.position.y - baseY) / Constants.BLOCK_SIZE + 2][
-            (mino.position.x - baseX) / Constants.BLOCK_SIZE
+            (mino.position.x - baseX.value) / Constants.BLOCK_SIZE
           ] = 1;
         });
       };
@@ -155,7 +156,7 @@
         return res;
       };
       const drawMino = () => {
-        let x = baseX + 14 * Constants.BLOCK_SIZE;
+        let x = baseX.value + 14 * Constants.BLOCK_SIZE;
         let y = 20 * Constants.BLOCK_SIZE;
         const name = minoNamePopper();
         const color = Constants.COLORS[name];
@@ -173,7 +174,7 @@
         }
       };
       const hold = () => {
-        const x = baseX - 5 * Constants.BLOCK_SIZE;
+        const x = baseX.value - 5 * Constants.BLOCK_SIZE;
         const y = baseY + 3 * Constants.BLOCK_SIZE;
         for (let i = 0; i < 4; i++) {
           let length = stageState.minoList.length;
@@ -194,7 +195,7 @@
         }
         if (stageState.holdMino.length !== 4) {
           const temp = stageState.holdMino[0];
-          let x = baseX + 4 * Constants.BLOCK_SIZE;
+          let x = baseX.value + 4 * Constants.BLOCK_SIZE;
           let y = 1 * Constants.BLOCK_SIZE;
           const name = JSON.parse(JSON.stringify(temp.name));
           const color = Constants.COLORS[name];
@@ -218,7 +219,7 @@
       };
 
       const shiftStock = () => {
-        let x = baseX + 4 * Constants.BLOCK_SIZE;
+        let x = baseX.value + 4 * Constants.BLOCK_SIZE;
         let y = 1 * Constants.BLOCK_SIZE;
         let name = stageState.stock[0].name;
         const shape = JSON.parse(JSON.stringify(Constants.SHAPE[name]));
@@ -276,7 +277,7 @@
                 Constants.BLOCK_SIZE +
                 3
             ][
-              (minoList[length - (i + 1)].position.x - baseX) /
+              (minoList[length - (i + 1)].position.x - baseX.value) /
                 Constants.BLOCK_SIZE
             ] == 1
           )
@@ -343,23 +344,23 @@
         let length = stageState.minoList.length;
         if (
           stageState.minoList[length - 1].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 2].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 3].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 4].position.x >
-            baseX + Constants.BLOCK_SIZE * 9
+            baseX.value + Constants.BLOCK_SIZE * 9
         ) {
           slideLeft();
           counter++;
           collisionToWall();
         }
         if (
-          stageState.minoList[length - 1].position.x < baseX ||
-          stageState.minoList[length - 2].position.x < baseX ||
-          stageState.minoList[length - 3].position.x < baseX ||
-          stageState.minoList[length - 4].position.x < baseX
+          stageState.minoList[length - 1].position.x < baseX.value ||
+          stageState.minoList[length - 2].position.x < baseX.value ||
+          stageState.minoList[length - 3].position.x < baseX.value ||
+          stageState.minoList[length - 4].position.x < baseX.value
         ) {
           slideRight();
           counter++;
@@ -378,16 +379,16 @@
         ];
         if (
           stageState.map[(currentPos[0].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[0].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[0].x - baseX.value) / Constants.BLOCK_SIZE
           ] == 1 ||
           stageState.map[(currentPos[1].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[1].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[1].x - baseX.value) / Constants.BLOCK_SIZE
           ] == 1 ||
           stageState.map[(currentPos[2].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[2].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[2].x - baseX.value) / Constants.BLOCK_SIZE
           ] == 1 ||
           stageState.map[(currentPos[3].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[3].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[3].x - baseX.value) / Constants.BLOCK_SIZE
           ] == 1
         ) {
           slideRight();
@@ -406,16 +407,16 @@
         ];
         if (
           stageState.map[(currentPos[0].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[0].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[0].x - baseX.value) / Constants.BLOCK_SIZE
           ] === 1 ||
           stageState.map[(currentPos[1].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[1].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[1].x - baseX.value) / Constants.BLOCK_SIZE
           ] === 1 ||
           stageState.map[(currentPos[2].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[2].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[2].x - baseX.value) / Constants.BLOCK_SIZE
           ] === 1 ||
           stageState.map[(currentPos[3].y - baseY) / Constants.BLOCK_SIZE + 2][
-            (currentPos[3].x - baseX) / Constants.BLOCK_SIZE
+            (currentPos[3].x - baseX.value) / Constants.BLOCK_SIZE
           ] === 1
         ) {
           slideLeft();
@@ -506,18 +507,18 @@
           (isI(stageState.minoList[length - 4].name)
             ? counterM > 2
             : counterM > 1) ||
-          stageState.minoList[length - 1].position.x < baseX ||
-          stageState.minoList[length - 2].position.x < baseX ||
-          stageState.minoList[length - 3].position.x < baseX ||
-          stageState.minoList[length - 4].position.x < baseX ||
+          stageState.minoList[length - 1].position.x < baseX.value ||
+          stageState.minoList[length - 2].position.x < baseX.value ||
+          stageState.minoList[length - 3].position.x < baseX.value ||
+          stageState.minoList[length - 4].position.x < baseX.value ||
           stageState.minoList[length - 1].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 2].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 3].position.x >
-            baseX + Constants.BLOCK_SIZE * 9 ||
+            baseX.value + Constants.BLOCK_SIZE * 9 ||
           stageState.minoList[length - 4].position.x >
-            baseX + Constants.BLOCK_SIZE * 9
+            baseX.value + Constants.BLOCK_SIZE * 9
         ) {
           resetPosition(lastPos, lastShape);
           return true;
@@ -685,7 +686,30 @@
         ctx.emit("level", stageState.level);
       };
 
+      const adoptMinoPosToWindow = () => {
+        const newBaseX =
+          Math.floor(0.5 * window.innerWidth) - 5 * Constants.BLOCK_SIZE;
+        for (let i = 0; i < stageState.minoList.length; i++) {
+          stageState.minoList[i].resize(newBaseX - baseX.value);
+        }
+        for (let i = 0; i < stageState.holdMino.length; i++) {
+          stageState.holdMino[i].resize(newBaseX - baseX.value);
+        }
+        for (let i = 0; i < stageState.ghost.length; i++) {
+          stageState.ghost[i].resize(newBaseX - baseX.value);
+        }
+        for (let i = 0; i < stageState.stock.length; i++) {
+          stageState.stock[i].resize(newBaseX - baseX.value);
+        }
+        baseX.value = newBaseX;
+      };
+
+      onMounted(() => {
+        window.addEventListener("resize", adoptMinoPosToWindow);
+      });
+
       return {
+        baseX,
         drawMino,
         hold,
         stageState,

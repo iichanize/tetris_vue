@@ -81,4 +81,8 @@ export class MinoModel {
   setForce(value: number) {
     this.force = value;
   }
+
+  resize(difference: number) {
+    this.position = new Point(this.position.x + difference, this.position.y);
+  }
 }

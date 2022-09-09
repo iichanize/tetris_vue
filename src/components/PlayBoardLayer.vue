@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, ref } from "vue";
+  import { defineComponent, onMounted, reactive, ref } from "vue";
   import { Block } from "./Block";
   import { useAnimationFrame } from "../core/useAnimationFrame";
   import { MinoModel } from "../core/MinoModel";
@@ -69,17 +69,20 @@
       const getMap = (map) => {
         stageState.map = map;
       };
-
+      let baseX1 = ref(
+        Math.floor(0.5 * window.innerWidth) - 6 * Constants.BLOCK_SIZE
+      );
+      let baseX2 = ref(
+        Math.floor(0.5 * window.innerWidth) + 5 * Constants.BLOCK_SIZE
+      );
       const buildWall = () => {
-        let x1 = Math.floor(0.5 * window.innerWidth) - 6 * Constants.BLOCK_SIZE;
-        let x2 = Math.floor(0.5 * window.innerWidth) + 5 * Constants.BLOCK_SIZE;
         let y1 = 2 * Constants.BLOCK_SIZE;
         let y2 = 22 * Constants.BLOCK_SIZE;
         let j = 0;
         for (let i = 0; i < 21; i++) {
           stageState.wallList.push(
             new MinoModel(
-              x1,
+              baseX1.value,
               y1 + i * Constants.BLOCK_SIZE,
               "wall",
               "128,128,128",
@@ -88,7 +91,7 @@
           );
           stageState.wallList.push(
             new MinoModel(
-              x2,
+              baseX2.value,
               y1 + i * Constants.BLOCK_SIZE,
               "wall",
               "128,128,128",
@@ -98,7 +101,7 @@
           if (j < 10) {
             stageState.wallList.push(
               new MinoModel(
-                x1 + (j + 1) * Constants.BLOCK_SIZE,
+                baseX1.value + (j + 1) * Constants.BLOCK_SIZE,
                 y2,
                 "wall",
                 "128, 128, 128",
@@ -136,7 +139,22 @@
         return true;
       });
 
+      const adoptMinoPosToWindow = () => {
+        const newBaseX1 =
+          Math.floor(0.5 * window.innerWidth) - 6 * Constants.BLOCK_SIZE;
+        for (let i = 0; i < stageState.wallList.length; i++) {
+          stageState.wallList[i].resize(newBaseX1 - baseX1.value);
+        }
+        baseX1.value = newBaseX1;
+      };
+
+      onMounted(() => {
+        window.addEventListener("resize", adoptMinoPosToWindow);
+      });
+
       return {
+        baseX1,
+        baseX2,
         stageState,
         getMap,
         totalScore,
