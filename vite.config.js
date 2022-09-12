@@ -6,10 +6,11 @@ module.exports = {
   port: process.env.PORT,
   server: {
     https:true,
-    hmr: {
-      host:'tetris-vue.herokuapp.com',
-      protocol: 'wss',
-      port: process.env.PORT
-    }
+    hmr: false
+    // hmr: {
+    //   host:'tetris-vue.herokuapp.com',
+    //   protocol: 'wss',
+    //   port: process.env.PORT
+    // }
   }
 }
