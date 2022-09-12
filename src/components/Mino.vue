@@ -645,10 +645,10 @@
         if (stageState.map[1][4] === 1) {
           return false;
         }
-        if (stageState.healthCheckTime % 2000 === 0) {
-          scoreTransfer.healthCheck();
-          stageState.healthCheckTime = 0;
-        }
+        // if (stageState.healthCheckTime % 2000 === 0) {
+        //   scoreTransfer.healthCheck();
+        //   stageState.healthCheckTime = 0;
+        // }
         if (
           stageState.t % (52 - Math.floor(1.7 * stageState.level)) === 0 ||
           forceRefresh
