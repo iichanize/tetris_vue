@@ -6,6 +6,9 @@ module.exports = {
   port: process.env.PORT,
   server: {
     https:true,
-    hmr: false
+    hmr: {
+      port: 443,
+      protocol: "wss"
+    }
   }
 }
