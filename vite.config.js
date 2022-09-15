@@ -9,7 +9,8 @@ module.exports = {
     https:true,
     hmr: {
       port: 443,
-      protocol: "wss"
+      protocol: "wss",
+      host:"localhost"
     }
   }
 }
