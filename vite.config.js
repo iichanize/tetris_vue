@@ -4,6 +4,7 @@ module.exports = {
   base: ".",
   assetsDir: "assets",
   port: process.env.PORT,
+  strictPort: true,
   server: {
     https:true,
     hmr: {
