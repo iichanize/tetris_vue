@@ -3,14 +3,14 @@ module.exports = {
   outDir: "docs",
   base: ".",
   assetsDir: "assets",
+  port: process.env.PORT,
   server: {
-    // https:true,
+    https:true,
     strictPort: true,
-    port: process.env.PORT,
     hmr: {
       port: 443,
-      // protocol: "wss",
-      // host:"localhost"
+      protocol: "wss",
+      host:"localhost"
     }
   }
 }
