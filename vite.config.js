@@ -4,13 +4,13 @@ module.exports = {
   base: ".",
   assetsDir: "assets",
   server: {
-    https:true,
+    // https:true,
     strictPort: true,
     port: process.env.PORT,
     hmr: {
       port: 443,
-      protocol: "wss",
-      host:"localhost"
+      // protocol: "wss",
+      // host:"localhost"
     }
   }
 }
