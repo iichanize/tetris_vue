@@ -8,7 +8,7 @@ module.exports = {
   server: {
     https:true,
     hmr: {
-      clientPort: 443,
+      port: 443,
       protocol: "wss"
     }
   }
