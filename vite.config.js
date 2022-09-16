@@ -8,10 +8,10 @@ module.exports = {
     host:true,
     // https:true,
     strictPort: true,
-    port: process.env.PORT,
+    // port: process.env.PORT,
     hmr: {
-      port: 443,
-      // protocol: "wss",
+      clientPort: 443,
+      protocol: "wss",
       // host:"localhost"
     }
   }
