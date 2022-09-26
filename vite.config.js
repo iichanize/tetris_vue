@@ -1,7 +1,7 @@
 // const VUE_PORT = process.env.PORT || 5000;
 module.exports = {
   outDir: "docs",
-  base: ".",
+  base: "/tetris_vue/",
   assetsDir: "assets",
   port: process.env.PORT,
   server: {
