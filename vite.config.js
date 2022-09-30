@@ -1,16 +1,18 @@
 // const VUE_PORT = process.env.PORT || 5000;
 module.exports = {
   outDir: "docs",
-  base: "",
+  base: ".",
   assetsDir: "assets",
   port: process.env.PORT,
+  publicPath: "./",
   server: {
     host:true,
-    // https:true,
+    https:true,
+    open: true,
     strictPort: true,
     // port: process.env.PORT,
     hmr: {
-      clientPort: 443,
+      port: 443,
       protocol: "wss",
       // host:"localhost"
     }
